@@ -1,0 +1,128 @@
+---
+import ProductCard from "./ProductCardWhite.astro";
+
+// Define as props que o componente vai receber
+interface Props {
+  posts: any[];
+  title?: string;
+}
+
+// Recebe as props
+const { posts, title = "Related Suplements" } = Astro.props;
+---
+
+<style>
+  .full-width-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50.4vw;
+    margin-right: -50.4vw;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  /* Navigation buttons styling */
+  .nav-buttons {
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-right: 0px;
+  }
+
+  /* Hide navigation on medium screens and up */
+  @media (min-width: 768px) {
+    .nav-buttons {
+      display: none !important;
+    }
+  }
+
+  .custom-nav-button {
+    color: #4caf50 !important;
+    background: rgba(255, 255, 255, 0.9);
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+  }
+
+  .custom-nav-button:hover {
+    background: rgba(76, 175, 80, 0.1);
+  }
+</style>
+
+{
+  posts.length > 0 && (
+    <section class="full-width-section bg-[#FAFDF2] py-12 lg:py-[88px]">
+      <div class="max-w-[1212px] mx-auto px-4">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold px-0 !mt-0 !mb-0">{title}</h2>
+        </div>
+
+        {/* Desktop view - Grid */}
+        <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-[30px] lg:gap-[50px] justify-items-start min-h-[360px]">
+          {posts.map((post) => (
+            <div
+              class="w-full max-w-[360px] mx-auto"
+              data-title={post.data.title}
+              data-category={post.data.category}
+            >
+              <ProductCard
+                title={post.data.mainTitle}
+                description={post.data.description}
+                image={post.data.image}
+                background={post.data.image}
+                category={post.data.category}
+                categoryColor={post.data.categoryColor || "green"}
+                slug={post.slug}
+                reviews={post.data.reviews || 0}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile view - Horizontal Scroll */}
+        <div class="block md:hidden">
+          <div class="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+            {posts.map((post) => (
+              <div class="flex-shrink-0 w-[360px]">
+                <div
+                  class="w-full"
+                  data-title={post.data.title}
+                  data-category={post.data.category}
+                >
+                  <ProductCard
+                    title={post.data.mainTitle}
+                    description={post.data.description}
+                    image={post.data.image}
+                    background={post.data.image}
+                    category={post.data.category}
+                    categoryColor={post.data.categoryColor || "green"}
+                    slug={post.slug}
+                    reviews={post.data.reviews || 0}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,625 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ProductCard from "../components/ProductCard.astro";
+import SEOSchema from "../components/SEOSchema.astro";
+import { getCollection } from "astro:content";
+import { SEO } from "astro-seo";
+import { Image } from "astro:assets";
+
+const allPosts = (await getCollection("products")) as any[];
+// Garantir que cada post tenha um slug válido
+allPosts.forEach((post) => {
+  // Se o post não tiver slug, usar o ID como slug
+  if (!post.slug) {
+    console.log("Post sem slug, usando ID como fallback:", post.id);
+    post.slug = post.id.replace(/^products\//, "");
+  }
+});
+const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
+---
+
+<SEO
+  slot="SEO"
+  title="Nutra24 - Health Products and Supplements"
+  titleTemplate="%s - Nutra24 Health Products"
+  titleDefault="Nutra24 Health Products"
+  description="Discover our complete line of health supplements and wellness products. High-quality nutraceuticals for your health needs."
+  canonical={Astro.url.href}
+  noindex={false}
+  nofollow={false}
+  charset="UTF-8"
+  openGraph={{
+    basic: {
+      title: "Nutra24 - Health Products and Supplements",
+      type: "website",
+      image: "/assets/content/Color.webp",
+      url: Astro.url.href,
+    },
+    optional: {
+      description:
+        "Discover our complete line of health supplements and wellness products. High-quality nutraceuticals for your health needs.",
+      siteName: "Nutra24",
+      locale: "en_US",
+      determiner: "auto",
+    },
+    image: {
+      alt: "Nutra24 Health Products",
+      width: 1200,
+      height: 630,
+      type: "image/webp",
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    site: "@nutra24",
+    creator: "@nutra24",
+    title: "Nutra24 - Health Products and Supplements",
+    image: "/assets/content/Color.webp",
+    imageAlt: "Nutra24 Health Products",
+    description:
+      "Discover our complete line of health supplements and wellness products. High-quality nutraceuticals for your health needs.",
+  }}
+  extend={{
+    link: [{ rel: "icon", href: "/favicon.svg" }],
+    meta: [
+      {
+        name: "keywords",
+        content:
+          "health supplements, nutraceuticals, wellness products, probiotics, vitamins, minerals, natural supplements, dietary supplements, weight loss, joint health, digestive health, immune support, energy boost, anti-aging, detox supplements",
+      },
+      {
+        name: "geo.region",
+        content: "US",
+      },
+      {
+        name: "geo.placename",
+        content: "United States",
+      },
+      {
+        name: "distribution",
+        content: "global",
+      },
+      {
+        name: "rating",
+        content: "general",
+      },
+    ],
+  }}
+/>
+
+<SEOSchema
+  type="website"
+  title="Nutra24 - Health Products and Supplements"
+  description="Discover our complete line of health supplements and wellness products. High-quality nutraceuticals for your health needs."
+  url="https://nutra24.com/"
+/>
+
+<SEOSchema type="organization" />
+<Layout
+  title="Nutra24 - Produtos para Saúde e Bem-estar"
+  description="Suplementos e produtos para nutrição e saúde"
+>
+  <Header />
+
+  <main class="bg-white lg:pt-[74px] md:pt-[25px] pt-0 pb-[165px]">
+    <div class="mx-auto !w-full !max-w-[1212px] lg:px-4 md:p-4 p-0">
+      <!-- Banner com versão mobile e desktop diferentes -->
+      <div class="mb-10 relative overflow-hidden rounded-lg">
+        <!-- Versão Desktop (escondida em mobile) -->
+        <div
+          class="relative hidden md:flex bg-[#E9F0D1] rounded-lg overflow-hidden h-[362px] items-center"
+        >
+          <div class="flex flex-row items-center w-full h-full">
+            <!-- Lado esquerdo com a imagem da mulher -->
+            <div
+              class="w-1/4 h-full ml-4 md:ml-8 lg:ml-18 relative z-10 flex items-end justify-start"
+            >
+              <Image
+                src="/assets/woman-2.webp"
+                alt="Woman pointing to content"
+                width={220}
+                height={340}
+                class="h-[280px] md:h-[320px] lg:h-[340px] w-[220px] md:w-[240px] lg:w-[260px] object-contain"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+                densities={[1, 2]}
+                format="webp"
+                quality={80}
+              />
+            </div>
+
+            <!-- Lado direito com o texto e as tags -->
+            <div
+              class="w-3/4 relative z-40 p-2 md:p-4 lg:p-1 flex flex-col justify-center items-start text-left"
+            >
+              <h2
+                class="!text-[28px] md:!text-[36px] lg:!text-[48px] !font-bold text-[#354C44] !mt-0 !mb-[10px] md:!mb-[15px] !leading-tight"
+              >
+                <span class="block md:inline">The Power of</span>
+                <span class="block md:inline"> Nutraceuticals</span>
+              </h2>
+              <p
+                class="!text-[16px] md:!text-[20px] lg:!text-[24px] font-normal text-[#354C44] !mb-[20px] md:!mb-[30px]"
+              >
+                Transform Your Health, Nourish the Best in You
+              </p>
+
+              <div class="flex justify-start">
+                <div class="flex space-x-3">
+                  <Image
+                    src="/assets/abstract/tags.webp"
+                    alt="Certification tags"
+                    width={256}
+                    height={64}
+                    class="h-8 md:h-10 lg:h-10 w-auto"
+                    loading="eager"
+                    decoding="async"
+                    densities={[1, 2]}
+                    format="webp"
+                    quality={80}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Background pattern com base.webp (desktop) -->
+          <div class="absolute top-0 left-0 w-full h-full z-0 overflow-hidden">
+            <img
+              src="/assets/abstract/base.webp"
+              alt="Background pattern"
+              class="w-full h-full object-cover"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <!-- Versão Mobile (escondida em desktop) -->
+        <div
+          class="relative md:hidden bg-[#E9F0D1]  overflow-hidden h-[250px] sm:h-[180px]"
+        >
+          <!-- Layout flexível para colocar texto e imagem lado a lado -->
+          <div
+            class="flex flex-row items-center justify-between relative z-10 h-full"
+          >
+            <!-- Coluna de imagem à esquerda (como no desktop) -->
+            <div class="w-3/4 relative z-10 flex justify-end items-end h-full  xs:flex"    >
+              <!-- <Image
+                src="/assets/abstract/woman2.webp"
+                alt="Woman pointing to content"
+                width={180}
+                height={260}
+                widths={[180, 220]}
+                sizes="180px"
+                class="h-auto max-h-[180px] sm:max-h-[260px] object-contain"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+                format="webp"
+                quality={70}
+              /> -->
+                       <Image
+                src="/assets/abstract/woman2.webp"
+                alt="Woman pointing to content"
+                width={180}
+                height={360}
+                widths={[180, 220]}
+                sizes="180px"
+                class="h-auto max-h-[380px] sm:max-h-[360px] object-contain"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+                format="webp"
+                quality={70}
+              />
+            </div>
+
+            <!-- Coluna de texto à direita (como no desktop) -->
+            <div  class="w-full  xs:w-1/4 relative z-40 p-4 sm:p-2 sm:pt-1 flex flex-col justify-center h-full" >
+              <h2
+
+              style="font-size:22px"
+                class=" !font-bold text-[#354C44] mb-2 sm:mb-3"
+              >
+                The Power of Nutraceuticals
+              </h2>
+              <p
+               style="font-size:14px"
+                class=" sm:text-base text-[#354C44] mb-3 sm:mb-4"
+              >
+                Transform Your Health, Nourish the Best in You
+              </p>
+
+              <!-- Certificações abaixo do texto -->
+              <div class="relative z-40">
+                <Image
+                  src="/assets/abstract/aw.webp"
+                  alt="Certification tags"
+                  width={120}
+                  height={30}
+                  widths={[120, 150]}
+                  sizes="120px"
+                  class="h-6 sm:h-7 w-auto"
+                  loading="eager"
+                  decoding="async"
+                  format="webp"
+                  quality={60}
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Background pattern com base.webp (mobile) -->
+          <div class="absolute top-0 left-0 w-full h-full z-0 overflow-hidden">
+            <img
+              src="/assets/abstract/base.webp"
+              alt="Background pattern"
+              class="w-full h-full object-cover"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+
+      <h1 class="lg:!text-[24px] sm:!text-[12px] !font-bold !mb-[25px] lg:!mt-[150px] md:!mt-[50px] sm:!mt-[5px] lg:px-4 md:p-4 p-4 pt-0">
+        Top Products
+      </h1>
+
+      <div id="noResultsMessage" class="hidden text-center py-8 text-gray-500">
+        No products found matching your search.
+      </div>
+
+      <!-- Grid de produtos com shadow e espaçamento consistente -->
+      <div
+        id="productsGrid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[50px] justify-center lg:justify-items-start"
+      >
+        {
+          sortedPosts.map((post: any) => (
+            <div
+              class="w-full flex justify-center lg:justify-start"
+             
+              data-title={post.data.title}
+              data-category={post.data.category}
+            >
+              <ProductCard
+                title={post.data.mainTitle}
+                description={post.data.description}
+                image={post.data.image}
+                background={post.data.image}
+                category={post.data.category}
+                categoryColor={post.data.categoryColor || "green"}
+                slug={post.slug}
+                reviews={post.data.reviews}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Controles de paginação -->
+      <div
+        id="pagination"
+        class="mt-12 flex justify-center items-center space-x-2"
+      >
+        <button
+          id="prevPage"
+          class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#0B3B22] disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-1"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd"></path>
+          </svg>
+          Previous
+        </button>
+
+        <div id="pageNumbers" class="flex items-center space-x-1">
+          <!-- Os números de página serão inseridos dinamicamente pelo JavaScript -->
+        </div>
+
+        <button
+          id="nextPage"
+          class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#0B3B22] disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Next
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 ml-1"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Configurações de paginação
+      const itemsPerPage = 15; // Número de produtos por página
+      let currentPage = 1;
+      let filteredCards = [];
+
+      // Pré-computar valores para evitar cálculos repetidos durante o scroll/resize
+      let totalPages = 1;
+      let startIndex = 0;
+      let endIndex = itemsPerPage;
+
+      // Cache de elementos DOM - fazemos isso uma única vez no início
+      const prevPageButton = document.getElementById("prevPage");
+      const nextPageButton = document.getElementById("nextPage");
+      const currentPageSpan = document.getElementById("currentPage");
+      const totalPagesSpan = document.getElementById("totalPages");
+      const noResultsMessage = document.getElementById("noResultsMessage");
+      const pageNumbersContainer = document.getElementById("pageNumbers");
+
+      // Pré-selecionar todos os cards de produto e armazenar dados relevantes em memória
+      // para evitar acessar o DOM repetidamente
+      const productCards = Array.from(
+        document.querySelectorAll(".product-card"),
+      ).map((card) => {
+        return {
+          element: card,
+          title: (card.getAttribute("data-title") || "").toLowerCase(),
+          category: (card.getAttribute("data-category") || "").toLowerCase(),
+          description: (
+            card.getAttribute("data-description") || ""
+          ).toLowerCase(),
+        };
+      });
+
+      // Função para filtrar produtos - completamente otimizada para evitar reflow
+      function filterProducts(query) {
+        query = query.toLowerCase().trim();
+
+        // Fase 1: Processamento de dados (sem manipulação DOM)
+        const cardData = [];
+        let foundResults = false;
+
+        // Processar todos os cards de uma vez sem tocar no DOM
+        productCards.forEach((card) => {
+          const searchableText = `${card.title} ${card.description} ${card.category}`;
+          const matchesSearch = query === "" || searchableText.includes(query);
+
+          if (matchesSearch) {
+            cardData.push(card.element);
+            foundResults = true;
+          }
+        });
+
+        // Atualizar array filtrado sem tocar no DOM
+        filteredCards = cardData;
+
+        // Fase 2: Pré-cálculos (sem manipulação DOM)
+        currentPage = 1;
+        totalPages = Math.ceil(filteredCards.length / itemsPerPage) || 1;
+        startIndex = 0;
+        endIndex = Math.min(itemsPerPage, filteredCards.length);
+
+        // Fase 3: Atualizações DOM (agrupadas para minimizar reflow)
+        // Usamos requestAnimationFrame para garantir que as mudanças de DOM sejam feitas no próximo frame
+        requestAnimationFrame(() => {
+          // 3.1 Atualizar visibilidade da mensagem "sem resultados"
+          if (noResultsMessage) {
+            noResultsMessage.classList.toggle(
+              "hidden",
+              foundResults || query === "",
+            );
+          }
+
+          // 3.2 Atualizar visibilidade dos cards
+          // Primeiro escondemos todos os cards
+          productCards.forEach((card) => {
+            card.element.classList.add("hidden");
+          });
+
+          // Depois mostramos apenas os que devem estar visíveis
+          for (let i = startIndex; i < endIndex; i++) {
+            if (filteredCards[i]) {
+              filteredCards[i].classList.remove("hidden");
+            }
+          }
+
+          // 3.3 Atualizar controles de paginação
+          updatePaginationControls();
+        });
+      }
+
+      // Função para mostrar a página atual - otimizada para evitar reflow
+      function showCurrentPage() {
+        // Fase 1: Pré-cálculos (sem manipulação DOM)
+        startIndex = (currentPage - 1) * itemsPerPage;
+        endIndex = Math.min(startIndex + itemsPerPage, filteredCards.length);
+
+        // Fase 2: Atualizações DOM (agrupadas)
+        requestAnimationFrame(() => {
+          // 2.1 Atualizar visibilidade dos cards
+          // Primeiro escondemos todos os cards filtrados
+          filteredCards.forEach((card) => {
+            card.classList.add("hidden");
+          });
+
+          // Depois mostramos apenas os que devem estar visíveis na página atual
+          for (let i = startIndex; i < endIndex; i++) {
+            filteredCards[i].classList.remove("hidden");
+          }
+
+          // 2.2 Atualizar indicadores de página
+          if (currentPageSpan) {
+            currentPageSpan.textContent = currentPage.toString();
+          }
+
+          if (totalPagesSpan) {
+            totalPagesSpan.textContent = totalPages.toString();
+          }
+        });
+      }
+
+      // Função para atualizar apenas os controles de paginação
+      function updatePaginationControls() {
+        // Fase 1: Pré-cálculos (sem manipulação DOM)
+        const isFirstPage = currentPage <= 1;
+        const isLastPage = currentPage >= totalPages;
+
+        // Fase 2: Preparar conteúdo para números de página
+        let pageButtonsHTML = "";
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, startPage + 4);
+
+        // Ajustar se estamos próximos do final
+        if (endPage - startPage < 4 && startPage > 1) {
+          startPage = Math.max(1, endPage - 4);
+        }
+
+        // Fase 3: Atualizações DOM (agrupadas)
+        requestAnimationFrame(() => {
+          // 3.1 Atualizar botões prev/next
+          if (prevPageButton) {
+            prevPageButton.disabled = isFirstPage;
+            prevPageButton.style.opacity = isFirstPage ? "0.5" : "1";
+          }
+
+          if (nextPageButton) {
+            nextPageButton.disabled = isLastPage;
+            nextPageButton.style.opacity = isLastPage ? "0.5" : "1";
+          }
+
+          // 3.2 Atualizar números de página usando DocumentFragment
+          if (pageNumbersContainer) {
+            const fragment = document.createDocumentFragment();
+
+            // Limpar container existente
+            pageNumbersContainer.textContent = "";
+
+            // Criar e adicionar botões de página
+            for (let i = startPage; i <= endPage; i++) {
+              const pageButton = document.createElement("button");
+              pageButton.textContent = i.toString();
+              pageButton.className =
+                i === currentPage
+                  ? "px-4 py-2 text-sm font-medium bg-white border border-gray-300 rounded-md text-[#0B3B22] font-bold"
+                  : "px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#0B3B22]";
+
+              // Usar arrow function para evitar problemas de closure
+              pageButton.addEventListener("click", () => {
+                changePage(i);
+              });
+
+              fragment.appendChild(pageButton);
+            }
+
+            // Adicionar ellipsis se necessário
+            if (endPage < totalPages) {
+              const ellipsis = document.createElement("span");
+              ellipsis.textContent = "...";
+              ellipsis.className = "px-2 py-2 text-gray-500";
+              fragment.appendChild(ellipsis);
+            }
+
+            // Adicionar tudo ao DOM de uma vez
+            pageNumbersContainer.appendChild(fragment);
+          }
+        });
+      }
+
+      // Função para mudar de página - evita duplicação de código
+      function changePage(newPage) {
+        if (newPage >= 1 && newPage <= totalPages && newPage !== currentPage) {
+          currentPage = newPage;
+          showCurrentPage();
+          updatePaginationControls();
+        }
+      }
+
+      // Debounce otimizado para evitar múltiplas chamadas durante digitação
+      function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+          const context = this;
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+      }
+
+      // Configurar busca desktop com debounce
+      const searchInput = document.getElementById("searchInput");
+      const searchButton = document.getElementById("searchButton");
+
+      if (searchInput) {
+        const debouncedFilter = debounce((value) => {
+          filterProducts(value);
+        }, 300);
+
+        searchInput.addEventListener("input", () => {
+          debouncedFilter(searchInput.value);
+        });
+
+        searchInput.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            filterProducts(searchInput.value);
+          }
+        });
+      }
+
+      if (searchButton) {
+        searchButton.addEventListener("click", () => {
+          if (searchInput) {
+            filterProducts(searchInput.value);
+          }
+        });
+      }
+
+      // Configurar busca mobile com debounce
+      const mobileSearchInput = document.getElementById("mobileSearchInput");
+      if (mobileSearchInput) {
+        const debouncedMobileFilter = debounce((value) => {
+          filterProducts(value);
+
+          // Sincronizar com a busca desktop
+          if (searchInput && mobileSearchInput.value !== searchInput.value) {
+            searchInput.value = mobileSearchInput.value;
+          }
+        }, 300);
+
+        mobileSearchInput.addEventListener("input", () => {
+          debouncedMobileFilter(mobileSearchInput.value);
+        });
+      }
+
+      // Configurar eventos de paginação
+      if (prevPageButton) {
+        prevPageButton.addEventListener("click", () => {
+          changePage(currentPage - 1);
+        });
+      }
+
+      if (nextPageButton) {
+        nextPageButton.addEventListener("click", () => {
+          changePage(currentPage + 1);
+        });
+      }
+
+      // Inicializar a paginação ao carregar a página
+      filterProducts("");
+    });
+  </script>
+</Layout>

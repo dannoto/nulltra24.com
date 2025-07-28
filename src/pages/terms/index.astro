@@ -1,0 +1,170 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/HeaderInner.astro';
+import Footer from '../../components/Footer.astro';
+import { SEO } from 'astro-seo';
+
+const currentYear = new Date().getFullYear();
+---
+
+<SEO
+  slot="SEO"
+  title="Terms and Conditions - Nutra24"
+  titleTemplate="%s - Nutra24 Health Products"
+  titleDefault="Nutra24 Health Products"
+  description="Read the terms and conditions for using Nutra24, our independent review blog for nutraceutical products."
+  canonical={Astro.url.href}
+  noindex={false}
+  nofollow={false}
+  charset="UTF-8"
+  openGraph={{
+    basic: {
+      title: "Terms and Conditions - Nutra24",
+      type: "website",
+      image: "/assets/content/Color.webp",
+      url: Astro.url.href,
+    },
+    optional: {
+      description: "Read the terms and conditions for using Nutra24, our independent review blog for nutraceutical products.",
+      siteName: "Nutra24",
+      locale: "en_US",
+      determiner: "auto",
+    },
+    image: {
+      alt: "Nutra24 Health Products",
+      width: 1200,
+      height: 630,
+      type: "image/webp",
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    site: "@nutra24",
+    creator: "@nutra24",
+    title: "Terms and Conditions - Nutra24",
+    image: "/assets/content/Color.webp",
+    imageAlt: "Nutra24 Health Products",
+    description: "Read the terms and conditions for using Nutra24, our independent review blog for nutraceutical products.",
+  }}
+  extend={{
+    link: [{ rel: "icon", href: "/favicon.svg" }],
+    meta: [
+      {
+        name: "keywords",
+        content: "terms and conditions, Nutra24 terms, legal terms, user agreement, affiliate disclosure, site usage, liability disclaimer",
+      },
+    ],
+  }}
+/>
+<Layout title="Terms and Conditions - Nutra24" description="Read the terms and conditions for using Nutra24, our independent review blog for nutraceutical products.">
+  <Header />
+  
+  <main class="bg-white py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <div class="space-y-8">
+      <!-- Hero Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-[#234338] mb-4">Terms and Conditions – Nutra24 [{currentYear}]</h1>
+        <div class="w-24 h-1 bg-[#A5D46A] mx-auto mb-4"></div>
+        <p class="text-gray-500 text-sm">Last Updated: July {currentYear}</p>
+      </div>
+      
+      <!-- Section 1: Acceptance of Terms -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">1. Acceptance of Terms</h2>
+        <p class="text-gray-700 leading-relaxed">
+          By accessing or using <strong>Nutra24.com</strong>, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these Terms, you should discontinue use of the website immediately.
+        </p>
+      </section>
+      
+      <!-- Section 2: Site Purpose -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">2. Site Purpose</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Nutra24 is an <strong>independent review blog</strong> focused on nutraceutical products. We do not sell, ship, or distribute any products. Our purpose is to provide accurate, research-based insights and opinions to help users make informed decisions.
+        </p>
+      </section>
+      
+      <!-- Section 3: No Medical Advice -->
+      <section class="mb-8 bg-[#f8fbf5] p-5 rounded-lg border-l-4 border-[#A5D46A]">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">3. No Medical Advice</h2>
+        <p class="text-gray-700 leading-relaxed">
+          The content on this site is intended for informational purposes only and should <strong>not</strong> be considered medical advice. Always consult with a licensed healthcare provider before using any supplements or health products mentioned on this site.
+        </p>
+      </section>
+      
+      <!-- Section 4: Affiliate Disclosure -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">4. Affiliate Disclosure</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Nutra24 may participate in affiliate programs. Some outbound links may be affiliate links, which means we may earn a commission if you make a purchase through them—at no extra cost to you. These commissions help support the site, but do not influence our editorial independence.
+        </p>
+      </section>
+      
+      <!-- Section 5: Intellectual Property -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">5. Intellectual Property</h2>
+        <p class="text-gray-700 leading-relaxed">
+          All content published on Nutra24.com, including articles, graphics, logos, and reviews, is the intellectual property of Nutra24 unless stated otherwise. You may not copy, reproduce, or redistribute any content without prior written permission.
+        </p>
+      </section>
+      
+      <!-- Section 6: User Conduct -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">6. User Conduct</h2>
+        <ul class="list-disc pl-6 mb-4 text-gray-700 space-y-1">
+          <li>You agree not to use the website for unlawful purposes.</li>
+          <li>You must not post or transmit malicious code, spam, or harmful content.</li>
+          <li>You may not attempt to gain unauthorized access to the site's systems or data.</li>
+        </ul>
+      </section>
+      
+      <!-- Section 7: Third-Party Links -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">7. Third-Party Links</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Our content may link to third-party websites. Nutra24 has no control over the nature, content, or availability of those sites, and we are not responsible for any losses or damages arising from your use of such third-party platforms.
+        </p>
+      </section>
+      
+      <!-- Section 8: Limitation of Liability -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">8. Limitation of Liability</h2>
+        <p class="text-gray-700 leading-relaxed">
+          To the fullest extent permitted by law, Nutra24 shall not be held liable for any indirect or consequential losses or damages arising out of your use of the website or reliance on any content provided.
+        </p>
+      </section>
+      
+      <!-- Section 9: Modifications -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">9. Modifications</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Nutra24 reserves the right to update or modify these Terms at any time without prior notice. Updated versions will be posted on this page with a revised effective date. Continued use of the site implies your acceptance of those changes.
+        </p>
+      </section>
+      
+      <!-- Section 10: Governing Law -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">10. Governing Law</h2>
+        <p class="text-gray-700 leading-relaxed">
+          These Terms shall be governed by and construed in accordance with the laws of your local jurisdiction. Any disputes arising under these Terms will be subject to the exclusive jurisdiction of the courts in that region.
+        </p>
+      </section>
+      
+      <!-- Section 11: Contact -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">11. Contact</h2>
+        <p class="text-gray-700 leading-relaxed mb-3">
+          If you have any questions about these Terms and Conditions, feel free to contact us at:
+        </p>
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-[#A5D46A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <a href="mailto:hello@nutra24.com" class="text-[#234338] hover:text-[#A5D46A] font-medium">hello@nutra24.com</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <!-- <Footer /> -->
+</Layout>

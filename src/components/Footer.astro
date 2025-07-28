@@ -1,0 +1,118 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-[#1A3129] !text-white mt-auto py-[50px]">
+  <div class="flex flex-col gap-[50px] container mx-auto px-4">
+    <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
+      <!-- Logo à esquerda -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center">
+          <img
+            src="/assets/logo/color.svg"
+            alt="Nutra24"
+            class="h-6 sm:h-8 md:h-9 lg:h-10 max-w-[164px] max-h-[38px] w-auto"
+            width="164"
+            height="38"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+      </div>
+
+      <!-- Navegação no meio -->
+      <nav class="flex flex-col md:flex-row items-center gap-4 md:gap-6 mx-auto">
+        <a
+          href="/"
+          class="!text-white hover:text-[#A5D46A] text-xs md:text-sm whitespace-nowrap"
+          >Home</a
+        >
+        <a
+          href="/about"
+          class="!text-white hover:text-[#A5D46A] text-xs md:text-sm whitespace-nowrap"
+          >About</a
+        >
+        <a
+          href="/privacy-policy"
+          class="!text-white hover:text-[#A5D46A] text-xs md:text-sm whitespace-nowrap"
+          >Privacy Policy</a
+        >
+        <a
+          href="/terms"
+          class="!text-white hover:text-[#A5D46A] text-xs md:text-sm whitespace-nowrap"
+          >Terms & Conditions</a
+        >
+      </nav>
+
+      <!-- Botão voltar ao topo à direita -->
+      <div class="flex items-center">
+        <span class="mr-2 !text-white text-sm">Go To Top</span>
+        <a
+          href="#top"
+          aria-label="Go to top of page"
+          class="flex items-center bg-[#234338] hover:bg-[#234338]/80 rounded-full py-2 px-2 whitespace-nowrap"
+        >
+          <div
+            class="rounded-full p-1 flex items-center justify-center w-[34px] h-[34px]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 !text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+              width="34"
+              height="34"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Email e copyright -->
+    <div
+      class="flex flex-col gap-3
+      md:gap-1 md:flex-row items-center
+      justify-between text-sm bg-[#234338]
+      py-4 px-4 rounded-md
+      border border-[#2C5446]"
+    >
+      <div
+        class="flex items-center border border-[#2C5446] rounded-md py-2 px-4 whitespace-nowrap"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 mr-2 text-[#A5D46A]"
+          width="20"
+          height="20"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          ></path>
+        </svg>
+        <a
+          href="mailto:hello@nutra24.com"
+          class="!text-[#F2F2F2] whitespace-nowrap text-base font-medium"
+          >hello@nutra24.com</a
+        >
+      </div>
+      <div class="!text-white !font-normal">
+        © {currentYear} Nutra24. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>

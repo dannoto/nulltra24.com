@@ -1,0 +1,161 @@
+---
+
+---
+
+<header class="bg-[#1a3129]">
+  <!-- Banner promocional com design abstrato -->
+  <div class="py-2 sm:py-3 border-b-[0.5px] border-[#234338]">
+    <div class="mx-auto max-w-[1212px] px-4">
+      <div
+        class="mx-auto max-w-[1212px] bg-[#234338] border border-[#2c5446] rounded-lg sm:rounded-xl py-2 sm:py-3 relative overflow-hidden"
+      >
+        <div class="flex justify-center items-center">
+          <img
+            src="/assets/abstract/nav/left.svg"
+            alt=""
+            class="absolute md:block left-0 h-full w-1/4 object-cover"
+            width="300"
+            height="60"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src="/assets/abstract/nav/right.svg"
+            alt=""
+            class="md:block absolute right-0 h-full w-1/4 object-cover"
+            width="300"
+            height="60"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="flex items-center text-white px-3 sm:px-0">
+            <img
+              src="/assets/abstract/nav/base.svg"
+              alt=""
+              class="hidden md:block h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2"
+              width="16"
+              height="16"
+              loading="lazy"
+              decoding="async"
+            />
+            <span
+              class="text-xs hidden md:block sm:text-sm font-medium text-center"
+              >Discover the Top Nutraceuticals Revolutionizing the Market!</span
+            >
+            <span
+              class="text-xs block md:hidden sm:text-sm font-medium text-center"
+              >Discover the Top Nutraceuticals <br /> Revolutionizing the Market!</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de navegação principal -->
+  <div class="">
+    <div class="max-w-[1212px] mx-auto px-4 py-[20px]">
+      <div class="flex flex-row gap-4 md:gap-0 items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center">
+          <img
+            src="/assets/logo/color.svg"
+            alt="Nutra24"
+            class="h-6 sm:h-8 md:h-9 lg:h-10 max-w-[164px] max-h-[38px] w-auto"
+            width="164"
+            height="38"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- Barra de pesquisa -->
+        <div class="flex flex-1 max-w-full md:ml-12">
+          <div class="relative w-full">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="hidden md:block h-4 w-4 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search nutraceuticals..."
+              class="w-full py-3 pl-3 md:pl-10
+              px-4 pr-16 rounded-xl
+              border-0 focus:outline-none bg-white
+              text-sm placeholder-shown:text-sm"
+              data-mobile-placeholder="Search"
+            />
+            <script>
+              // Optimized placeholder adjustment for mobile devices
+              document.addEventListener("DOMContentLoaded", () => {
+                const searchInput = document.getElementById(
+                  "searchInput",
+                ) as HTMLInputElement;
+                if (!searchInput) return;
+
+                const defaultPlaceholder = "Search nutraceuticals...";
+                const mobilePlaceholder =
+                  searchInput.getAttribute("data-mobile-placeholder") ||
+                  "Search";
+
+                // Use ResizeObserver instead of resize event for better performance
+                const updatePlaceholder = () => {
+                  searchInput.placeholder =
+                    window.innerWidth < 640
+                      ? mobilePlaceholder
+                      : defaultPlaceholder;
+                };
+
+                // Set initial placeholder
+                updatePlaceholder();
+
+                // Use debounced resize handler to avoid layout thrashing
+                let resizeTimeout: number | null = null;
+                window.addEventListener("resize", () => {
+                  if (resizeTimeout) window.clearTimeout(resizeTimeout);
+                  resizeTimeout = window.setTimeout(updatePlaceholder, 100);
+                });
+              });
+            </script>
+            <button
+              id="searchButton"
+              aria-label="Search"
+              type="button"
+              class="absolute right-0 top-0 h-full w-[50px] md:w-auto md:px-5 bg-[#A5D46A] text-black rounded-xl text-xs sm:text-sm flex items-center justify-center cursor-pointer"
+            >
+              <span class="hidden md:block">Search</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="block md:hidden h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

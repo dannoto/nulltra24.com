@@ -1,0 +1,98 @@
+---
+interface Props {
+  type?: 'website' | 'product' | 'organization';
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  price?: string;
+  brand?: string;
+  category?: string;
+}
+
+const {
+  type = 'website',
+  title,
+  description,
+  url,
+  image,
+  price,
+  brand = 'Nutra24',
+  category
+} = Astro.props;
+
+const baseUrl = 'https://nutra24.com';
+const fullUrl = url || Astro.url.href;
+const fullImage = image ? `${baseUrl}${image}` : `${baseUrl}/assets/content/Color.webp`;
+
+let schema = {};
+
+if (type === 'website') {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Nutra24",
+    "description": "Premium health supplements and wellness products for optimal health",
+    "url": baseUrl,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${baseUrl}/?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`
+    }
+  };
+} else if (type === 'product') {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": title,
+    "description": description,
+    "image": fullImage,
+    "url": fullUrl,
+    "brand": {
+      "@type": "Brand",
+      "name": brand
+    },
+    "category": category,
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "USD",
+      "seller": {
+        "@type": "Organization",
+        "name": brand
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "reviewCount": "150"
+    }
+  };
+} else if (type === 'organization') {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
+    "name": "Nutra24",
+    "description": "Leading provider of premium health supplements and wellness products",
+    "url": baseUrl,
+    "logo": `${baseUrl}/assets/logo/color.svg`,
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "sameAs": [
+      "https://www.facebook.com/nutra24",
+      "https://www.instagram.com/nutra24",
+      "https://twitter.com/nutra24"
+    ]
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

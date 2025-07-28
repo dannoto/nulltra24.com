@@ -1,0 +1,306 @@
+---
+import { Image } from "astro:assets";
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  image,
+  background,
+  tags,
+  category,
+  price,
+  manufactured,
+  delivery,
+  shipping,
+  guarantee,
+} = frontmatter;
+---
+
+<Layout title={`${title} | Nutra24`} description={description}>
+  <!-- Tag verde no topo -->
+  <!-- Barra superior removida -->
+  <!-- Slot para conteúdo adicional (como posts relacionados) -->
+  <slot name="before-content" />
+  <main class="max-w-[1212px] lg:mx-auto md:px-4 pt-5 md:pt-8 px-5">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
+      <!-- Coluna à esquerda sticky -->
+
+      <div class="w-full lg:w-1/3 lg:max-w-[380px]">
+        <div class="flex flex-col w-full items-start gap-[25px]">
+          <!-- Botão Back -->
+          <a
+            href="/"
+            class="flex mt-4 items-center mb-0 md:mb-0 !text-[#1d1d1f] !text-[13px] tracking-[-0.25px] font-['Inter',sans-serif] h-5 hover:text-[#234338] transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-4 w-4 mr-1"
+              ><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg
+            >
+            Back
+          </a>
+          <!-- Título e descrição -->
+          <div class="flex flex-col w-full items-start gap-0">
+            <img
+              src={background}
+              alt={title}
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="w-full block mb-10 md:hidden h-auto object-contain mx-auto"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 75vw, 690px"
+            />
+
+            <h1
+              class="font-bold text-black !text-[28px] md:!text-[36px] leading-tight !mt-0 mb-2"
+            >
+              {frontmatter.mainTitle}
+            </h1>
+            <p
+              class="font-normal text-[#1d1d1f] text-base tracking-[-0.25px] leading-relaxed !mb-0"
+            >
+              {frontmatter.description}
+            </p>
+          </div>
+
+          <!-- Botão de compra -->
+          <a
+            href={frontmatter.affiliateLink}
+            class="w-full bg-[#234338] hover:bg-[#1a322a] !text-white font-medium text-sm rounded-[10px] px-6 transition-colors tracking-[-0.25px] h-auto py-3 text-center shadow-sm hover:shadow-md flex items-center justify-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Official Website
+          </a>
+
+          <!-- Especificações do produto -->
+          <div class="w-full p-0 space-y-2 md:space-y-[15px] mt-1">
+            <!-- Categoria -->
+            <div class="flex items-start justify-between w-full">
+              <div
+                class="font-['Inter',sans-serif] font-semibold text-black md:text-[14px] text-sm tracking-[-0.25px] pt-1"
+              >
+                Category
+              </div>
+              <div
+                class="font-['Inter',sans-serif] font-normal text-black text-sm tracking-[-0.25px] text-right max-w-[70%]"
+              >
+                {category || "Oral Health"}
+              </div>
+            </div>
+            <div class="w-full h-px bg-gray-200"></div>
+
+            <!-- Fabricante -->
+            <div class="flex items-start justify-between w-full">
+              <div
+                class="font-['Inter',sans-serif] font-semibold text-black md:text-[14px] text-sm tracking-[-0.25px] pt-1"
+              >
+                Manufactured
+              </div>
+              <div
+                class="font-['Inter',sans-serif] font-normal text-black text-sm tracking-[-0.25px] text-right max-w-[70%]"
+              >
+                {manufactured || "USA, FDA registered, GMP certified"}
+              </div>
+            </div>
+            <div class="w-full h-px bg-gray-200"></div>
+
+            <!-- Preço -->
+            <div class="flex items-start justify-between w-full">
+              <div
+                class="font-['Inter',sans-serif] font-semibold text-black md:text-[14px] text-sm tracking-[-0.25px] pt-1"
+              >
+                Price
+              </div>
+              <div
+                class="font-['Inter',sans-serif] font-normal text-black text-sm tracking-[-0.25px] text-right max-w-[70%]"
+              >
+                {price || "1 Bottle: $69, 3 Bottles: $177, 6 Bottles: $234"}
+              </div>
+            </div>
+            <div class="w-full h-px bg-gray-200"></div>
+
+            <!-- Tempo de entrega -->
+            <div class="flex items-start justify-between w-full">
+              <div
+                class="font-['Inter',sans-serif] font-semibold text-black md:text-[14px] text-sm tracking-[-0.25px] pt-1"
+              >
+                Delivery Times
+              </div>
+              <div
+                class="font-['Inter',sans-serif] font-normal text-black text-sm tracking-[-0.25px] text-right max-w-[70%]"
+              >
+                {delivery || "5-7 days (USA) 10-15 days (Worldwide)"}
+              </div>
+            </div>
+            <div class="w-full h-px bg-gray-200"></div>
+
+            <!-- Frete -->
+            <div class="flex items-start justify-between w-full">
+              <div
+                class="font-['Inter',sans-serif] font-semibold text-black md:text-[14px] text-sm tracking-[-0.25px] pt-1"
+              >
+                Shipping
+              </div>
+              <div
+                class="font-['Inter',sans-serif] font-normal text-black text-sm tracking-[-0.25px] text-right max-w-[70%]"
+              >
+                {shipping || "Free shipping for 3 or 6 Bottles packages"}
+              </div>
+            </div>
+            <div class="w-full h-px bg-gray-200"></div>
+
+            <!-- Garantia -->
+            <div class="flex items-start justify-between w-full">
+              <div
+                class="font-['Inter',sans-serif] font-semibold text-black md:text-[14px] text-sm tracking-[-0.25px] pt-1"
+              >
+                Money-Back Guarantee
+              </div>
+              <div
+                class="font-['Inter',sans-serif] font-normal text-black text-sm tracking-[-0.25px] text-right max-w-[70%]"
+              >
+                {guarantee || "60 days"}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna à direita com conteúdo do artigo -->
+      <div class="md:border-l md:pl-6 border-gray-200 lg:w-2/3">
+        <!-- Product Banner (outside prose container) -->
+
+        <!-- Article Content with prose styling -->
+        <article class="prose md:px-6 lg:prose-lg max-w-none">
+          <div class="w-full overflow-hidden mb-8">
+            <Image
+              src={background}
+              alt={title}
+              width={690}
+              height={290}
+              densities={[1, 1.5, 2]}
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="w-full hidden md:block h-auto object-contain mx-auto"
+              format="webp"
+              quality={80}
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 75vw, 690px"
+            />
+          </div>
+          <slot />
+        </article>
+      </div>
+
+      <!-- Slot para conteúdo adicional (como posts relacionados) -->
+    </div>
+    <slot name="after-content" />
+  </main>
+
+  <style>
+    /* Estilos para melhorar a aparência do conteúdo MDX */
+    .prose h1 {
+      color: #234338; /* verde escuro da marca */
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-top: 1.5em;
+      margin-bottom: 0.75em;
+      padding-bottom: 0.5rem;
+    }
+
+    .prose h2 {
+      color: #234338;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 1.5em;
+      margin-bottom: 0.75em;
+    }
+
+    .prose h3 {
+      color: #234338;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 1.25em;
+      margin-bottom: 0.5em;
+    }
+
+    .prose h4 {
+      color: #234338;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    .prose p {
+      margin-bottom: 1.25em;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .prose ul,
+    .prose ol {
+      margin-left: 1.5em;
+      margin-bottom: 1.5em;
+      font-size: 1rem;
+    }
+
+    .prose blockquote {
+      border-left: 4px solid #a5d46a; /* verde claro da marca */
+      padding-left: 1rem;
+      font-style: italic;
+      color: #4b5563; /* gray-600 */
+      background-color: #f9fafb;
+      padding: 1rem;
+      border-radius: 0.25rem;
+    }
+
+    /* Estilos para tabelas */
+    .prose table {
+      width: 100%;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      display: block;
+    }
+
+    .prose table th {
+      background-color: #f3f4f6; /* gray-100 */
+      color: #234338; /* verde escuro da marca */
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid #e5e7eb; /* gray-200 */
+    }
+
+    .prose table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #e5e7eb; /* gray-200 */
+      vertical-align: top;
+    }
+
+    .prose table tr:nth-child(even) {
+      background-color: #f9fafb; /* gray-50 */
+    }
+
+    .prose table tr:hover {
+      background-color: #f0fdf4; /* green-50 */
+    }
+  </style>
+</Layout>

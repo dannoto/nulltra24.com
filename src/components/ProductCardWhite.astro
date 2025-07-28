@@ -1,0 +1,162 @@
+---
+import { Image } from "astro:assets";
+
+// Define as props que o componente vai receber
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  background?: string;
+  category: string;
+  categoryColor?: string;
+  slug: string;
+  reviews: {
+    count: number;
+    rating: number;
+  };
+}
+
+// Recebe as props
+const {
+  title,
+  description,
+  image,
+  background,
+  category,
+  categoryColor = "green",
+  slug,
+  reviews,
+} = Astro.props;
+
+// Mapeamento de cores para classes do Tailwind
+const colorMap = {
+  green: "bg-[#e5f4cb] text-[#2f7e3f]",
+  yellow: "bg-yellow-100 text-yellow-800",
+  red: "bg-red-100 text-red-800",
+  pink: "bg-pink-100 text-pink-800",
+  purple: "bg-purple-100 text-purple-800",
+  blue: "bg-blue-100 text-blue-800",
+  amber: "bg-amber-100 text-amber-800",
+  teal: "bg-teal-100 text-teal-800",
+  lightRed: "bg-red-50 text-red-700",
+};
+
+// Determina as classes de cor com base na prop categoryColor
+const categoryColorClasses =
+  colorMap[categoryColor as keyof typeof colorMap] || colorMap.green;
+
+// Função para renderizar estrelas de avaliação
+function renderStars(rating: number) {
+  const stars = [];
+
+  // Adiciona estrelas cheias e vazias
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      // Estrela cheia
+      stars.push(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+      );
+    } else if (i - 0.5 <= rating) {
+      // Meia estrela (usando uma estrela cheia com metade coberta)
+      stars.push(
+        '<div class="relative w-[11px] h-[11px]"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="absolute top-0 right-0 w-1/2 h-full bg-white"></div></div>'
+      );
+    } else {
+      // Estrela vazia
+      stars.push(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+      );
+    }
+  }
+
+  return stars.join("");
+}
+
+// Função para formatar número de avaliações
+function formatReviewCount(count: number) {
+  return new Intl.NumberFormat("en-US").format(count);
+}
+---
+
+<a
+  href={slug ? `/products/${slug}` : "#"}
+  class="block w-full md:max-w-[360px]
+  min-h-[360px] md:min-h-[360px] rounded-[10px]
+  border border-solid border-[#e8e8e8]
+  p-2 sm:p-3 md:p-4 overflow-hidden
+  shadow-[0_8px_8px_-8px_rgba(0,0,0,0.1),_0_2px_2px_0_rgba(0,0,0,0.1),_0_0_1px_0_rgba(0,0,0,0.2)] bg-white"
+>
+  <div
+    class="flex flex-col items-center justify-center gap-[8px] sm:gap-[10px] h-full"
+  >
+    <!-- Product Image with responsive optimization -->
+    <div class="w-full flex justify-center">
+      <Image
+        src={image || "/images/products/placeholder.jpg"}
+        alt={title}
+        width={280}
+        height={180}
+        loading="lazy"
+        decoding="async"
+        class="w-full max-w-[280px] h-auto max-h-[180px] object-contain"
+        format="webp"
+        quality={70}
+        sizes="(max-width: 480px) 100vw, (max-width: 768px) 280px, 280px"
+      />
+    </div>
+
+    <!-- Product Information -->
+    <div
+      class="flex flex-col w-full max-w-[324px] items-start gap-[6px] sm:gap-[10px]"
+    >
+      <div class="flex flex-col items-start gap-1 sm:gap-2 w-full">
+        <div class="flex flex-col items-start gap-[1.89px] w-full">
+          <div class="flex justify-between items-start w-full">
+            <h3
+              class="font-semibold !mt-0 text-black text-base tracking-[-0.25px] leading-6"
+            >
+              {title}
+            </h3>
+
+            <span
+              class={`h-5 md:mt-[0.4px]  px-[5px] py-0.5 ${categoryColorClasses} rounded-sm text-xs tracking-[-0.25px] leading-[15px] font-medium`}
+            >
+              {category}
+            </span>
+          </div>
+        </div>
+
+        <p
+          class="h-10 font-normal text-[#1d1d1f] text-sm tracking-[-0.25px] leading-[21px] line-clamp-2"
+        >
+          {description}
+        </p>
+      </div>
+
+      <!-- Reviews -->
+      <div class="flex items-center gap-[7px]">
+        <div class="flex items-center gap-[5px]">
+          <div class="flex items-start gap-[3.79px]">
+            <div class="flex" set:html={renderStars(reviews.rating)} />
+          </div>
+          <span
+            class="font-normal text-[#6e6e73] text-xs tracking-[-0.12px] leading-[15px]"
+          >
+            {formatReviewCount(reviews.count)} Reviews
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+
+<!-- <style>
+  /* Ensure text doesn't overflow and maintains clean layout */
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+</style> -->

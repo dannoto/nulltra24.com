@@ -1,0 +1,167 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/HeaderInner.astro';
+import { SEO } from 'astro-seo';
+
+const currentYear = new Date().getFullYear();
+---
+
+<SEO
+  slot="SEO"
+  title="Privacy Policy - Nutra24"
+  titleTemplate="%s - Nutra24 Health Products"
+  titleDefault="Nutra24 Health Products"
+  description="Learn about Nutra24's privacy policy and how we protect your data when you visit our website."
+  canonical={Astro.url.href}
+  noindex={false}
+  nofollow={false}
+  charset="UTF-8"
+  openGraph={{
+    basic: {
+      title: "Privacy Policy - Nutra24",
+      type: "website",
+      image: "/assets/content/Color.webp",
+      url: Astro.url.href,
+    },
+    optional: {
+      description: "Learn about Nutra24's privacy policy and how we protect your data when you visit our website.",
+      siteName: "Nutra24",
+      locale: "en_US",
+      determiner: "auto",
+    },
+    image: {
+      alt: "Nutra24 Health Products",
+      width: 1200,
+      height: 630,
+      type: "image/webp",
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    site: "@nutra24",
+    creator: "@nutra24",
+    title: "Privacy Policy - Nutra24",
+    image: "/assets/content/Color.webp",
+    imageAlt: "Nutra24 Health Products",
+    description: "Learn about Nutra24's privacy policy and how we protect your data when you visit our website.",
+  }}
+  extend={{
+    link: [{ rel: "icon", href: "/favicon.svg" }],
+    meta: [
+      {
+        name: "keywords",
+        content: "privacy policy, Nutra24 privacy, data protection, cookies policy, GDPR, CCPA, affiliate disclosure",
+      },
+    ],
+  }}
+/>
+<Layout title="Privacy Policy - Nutra24" description="Learn about Nutra24's privacy policy and how we protect your data when you visit our website.">
+  <Header />
+  
+  <main class="bg-white py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <div class="space-y-8">
+      <!-- Hero Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-[#234338] mb-4">Privacy Policy – Nutra24 [{currentYear}]</h1>
+        <div class="w-24 h-1 bg-[#A5D46A] mx-auto mb-4"></div>
+        <p class="text-gray-500 text-sm">Last Updated: July {currentYear}</p>
+      </div>
+      
+      <!-- Section 1: Overview -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">1. Overview</h2>
+        <p class="text-gray-700 leading-relaxed">
+          At <strong>Nutra24.com</strong>, we are committed to protecting your privacy. This Privacy Policy outlines how we handle data when you visit our website. Nutra24 is an independent blog that provides reviews of nutraceutical products. We do <strong>not</strong> sell products, collect personal data, or require user registration.
+        </p>
+      </section>
+      
+      <!-- Section 2: No Collection of Personal Information -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">2. No Collection of Personal Information</h2>
+        <p class="text-gray-700 leading-relaxed">
+          We do not collect any personally identifiable information (PII) such as names, email addresses, or phone numbers. Our site does not contain contact forms, login areas, newsletter sign-ups, or user accounts.
+        </p>
+      </section>
+      
+      <!-- Section 3: Cookies and Analytics -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">3. Cookies and Analytics</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          We may use third-party analytics tools (such as Google Analytics) to understand how visitors interact with our website. These tools may use cookies and anonymous identifiers to collect non-personal information, such as:
+        </p>
+        <ul class="list-disc pl-6 mb-4 text-gray-700 space-y-1">
+          <li>Browser type and version</li>
+          <li>Device type</li>
+          <li>Pages visited and time spent</li>
+          <li>Referring sites and search terms</li>
+        </ul>
+        <p class="text-gray-700 leading-relaxed">
+          This data is aggregated and used only for site performance improvements and audience insights. You can disable cookies via your browser settings at any time.
+        </p>
+      </section>
+      
+      <!-- Section 4: External Links -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">4. External Links</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Nutra24.com may include links to external third-party websites. We are not responsible for the privacy practices or content on those sites. We encourage you to read the privacy policies of any third-party service you visit.
+        </p>
+      </section>
+      
+      <!-- Section 5: Affiliate Disclosure -->
+      <section class="mb-8 bg-[#f8fbf5] p-5 rounded-lg border-l-4 border-[#A5D46A]">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">5. Affiliate Disclosure</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Some links on this website may be affiliate links. If you click and make a purchase, we may earn a small commission. This does not affect your purchase price and does not involve the collection of personal data on our end.
+        </p>
+      </section>
+      
+      <!-- Section 6: Children's Privacy -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">6. Children's Privacy</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Nutra24.com is not intended for use by children under the age of 13. We do not knowingly collect or solicit personal information from minors. If you believe that a child under 13 has submitted personal data through a third-party link, please contact the external site directly.
+        </p>
+      </section>
+      
+      <!-- Section 7: Data Security -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">7. Data Security</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Although we do not collect personal data, we implement standard security protocols to protect our site from malicious activity, spam, and unauthorized access.
+        </p>
+      </section>
+      
+      <!-- Section 8: Your Rights (GDPR / CCPA) -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">8. Your Rights (GDPR / CCPA)</h2>
+        <p class="text-gray-700 leading-relaxed">
+          While we do not store personal data, visitors from regions with data protection laws (such as the EU's GDPR or California's CCPA) still have rights related to transparency, data access, and deletion. Since Nutra24 does not process personal data, we are exempt from direct compliance requirements, but we support data minimalism and anonymity by design.
+        </p>
+      </section>
+      
+      <!-- Section 9: Policy Updates -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">9. Policy Updates</h2>
+        <p class="text-gray-700 leading-relaxed">
+          This Privacy Policy may be updated from time to time. When changes are made, the "Effective Date" at the top of this page will be revised. Continued use of the site constitutes acceptance of the updated terms.
+        </p>
+      </section>
+      
+      <!-- Section 10: Contact Us -->
+      <section class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#234338] mb-3">10. Contact Us</h2>
+        <p class="text-gray-700 leading-relaxed mb-3">
+          If you have any questions or concerns about this Privacy Policy, feel free to contact us:
+        </p>
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-[#A5D46A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <a href="mailto:hello@nutra24.com" class="text-[#234338] hover:text-[#A5D46A] font-medium">hello@nutra24.com</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+</Layout>

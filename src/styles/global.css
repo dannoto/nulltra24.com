@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* Estilos globais */
+body,
+h1,
+h2,
+h3,
+p,
+li {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+a {
+  color: #0073e6;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+p,
+li {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+/* Tabelas responsivas com overflow */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+/* Adiciona wrapper automaticamente em tabelas */
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+/* asd */
+@media (max-width: 1004px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  /* p{
+    text-align: justify !important;
+  } */
+  ul{
+    margin-left: 0px !important;
+  }
+
+  h1 {
+    font-size: 24px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.2 !important;
+    font-weight: bold;
+    margin: 30px 0 20px;
+  }
+
+  h2 {
+    font-size: 22px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: bold;
+    margin: 25px 0 15px;
+  }
+
+  h3 {
+    font-size: 20px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: 600;
+    margin: 20px 0 10px;
+  }
+
+}
+
+/* Aumentar padding horizontal do container em desktop */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 1200px !important;
+  }
+ 
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: bold;
+    margin: 30px 0 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: bold;
+    margin: 25px 0 15px;
+  }
+
+  h3 {
+    font-size: 20px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: 600;
+    margin: 20px 0 10px;
+  }
+
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 1280px !important;
+  }
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: bold;
+    margin: 30px 0 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: bold;
+    margin: 25px 0 15px;
+  }
+
+  h3 {
+    font-size: 20px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: 600;
+    margin: 20px 0 10px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+    max-width: 1536px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: bold;
+    margin: 30px 0 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: bold;
+    margin: 25px 0 15px;
+  }
+
+  h3 {
+    font-size: 20px;
+    letter-spacing: -0.25px !important;
+    line-height: 1.3 !important;
+    font-weight: 600;
+    margin: 20px 0 10px;
+  }
+}

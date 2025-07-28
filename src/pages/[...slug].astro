@@ -1,0 +1,181 @@
+---
+import { SEO } from "astro-seo";
+import { getCollection } from "astro:content";
+// import Header from "../../components/HeaderInner.astro";
+// import RelatedPosts from "../../components/RelatedPosts.astro";
+// import SEOSchema from "../../components/SEOSchema.astro";
+// import ProductsPostLayout from "../../layouts/ProductsPostLayout.astro";
+import Header from "../components/HeaderInner.astro";
+import RelatedPosts from "../components/RelatedPosts.astro";
+import SEOSchema from "../components/SEOSchema.astro";
+import ProductsPostLayout from "../layouts/ProductsPostLayout.astro";
+
+// Gera rotas para todos os posts
+export async function getStaticPaths() {
+  const posts = await getCollection("products");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+// Recebe o post como prop
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Busca posts relacionados (mesma categoria)
+const allPosts = await getCollection("products");
+type PostType = typeof allPosts[0];
+
+// Primeiro tenta encontrar posts da mesma categoria
+const categoryPosts = allPosts.filter(
+  (p) => p.slug !== post.slug && p.data.category === post.data.category
+);
+
+// Se não houver posts suficientes da mesma categoria, complementa com posts de tags relacionadas
+let relatedPosts: PostType[] = [];
+
+if (categoryPosts.length >= 3) {
+  // Se tivermos 3 ou mais posts da mesma categoria, usamos apenas esses
+  relatedPosts = categoryPosts
+    .sort(() => Math.random() - 0.5) // Ordem aleatória
+    .slice(0, 3);
+} else {
+  // Adiciona todos os posts da mesma categoria
+  relatedPosts = [...categoryPosts];
+  
+  // Complementa com posts que compartilham tags
+  if (post.data.tags && post.data.tags.length > 0) {
+    const tagPosts = allPosts.filter(
+      (p) =>
+        p.slug !== post.slug &&
+        !relatedPosts.some(rp => rp.slug === p.slug) && // Evita duplicatas
+        p.data.tags &&
+        p.data.tags.some((tag) => post.data.tags?.includes(tag))
+    );
+    
+    // Adiciona posts com tags relacionadas até completar 3 posts
+    relatedPosts = [...relatedPosts, ...tagPosts.slice(0, 3 - relatedPosts.length)];
+  }
+  
+  // Se ainda não tivermos 3 posts, adiciona posts aleatórios
+  if (relatedPosts.length < 3) {
+    const remainingPosts = allPosts.filter(
+      (p) => 
+        p.slug !== post.slug && 
+        !relatedPosts.some(rp => rp.slug === p.slug)
+    );
+    
+    relatedPosts = [
+      ...relatedPosts,
+      ...remainingPosts
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3 - relatedPosts.length)
+    ];
+  }
+}
+---
+
+<SEO
+  slot="SEO"
+  title={`${post.data.title} | Nutra24`}
+  titleTemplate="%s - Nutra24 Health Products"
+  titleDefault="Nutra24 Health Products"
+  description={post.data.description}
+  canonical={Astro.url.href}
+  noindex={false}
+  nofollow={false}
+  charset="UTF-8"
+  openGraph={{
+    basic: {
+      title: `${post.data.title}`,
+      type: "article",
+      image: post.data.image || "/assets/content/Color.webp",
+      url: Astro.url.href,
+    },
+    optional: {
+      description: post.data.description,
+      siteName: "Nutra24",
+      locale: "en_US",
+      determiner: "auto",
+    },
+    image: {
+      alt: post.data.title,
+      width: 1200,
+      height: 630,
+      type: "image/webp",
+    },
+    article: {
+      publishedTime: post.data.pubDate.toISOString(),
+      modifiedTime: post.data.updatedDate
+        ? post.data.updatedDate.toISOString()
+        : post.data.pubDate.toISOString(),
+      authors: [post.data.author || "Nutra24 Team"],
+      section: post.data.category,
+      tags: post.data.tags,
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    site: "@nutra24",
+    creator: "@nutra24",
+    title: post.data.title,
+    image: post.data.image || "/assets/content/Color.webp",
+    imageAlt: post.data.title,
+    description: post.data.description,
+  }}
+  extend={{
+    link: [{ rel: "icon", href: "/favicon.svg" }],
+    meta: [
+      {
+        name: "keywords",
+        content: post.data.tags
+          ? post.data.tags.join(", ")
+          : "health, supplements, nutraceuticals",
+      },
+      {
+        property: "og:price:amount",
+        content: post.data.price
+          ? (() => {
+              // Extrair o primeiro valor de preço, independentemente do formato
+              const priceText = post.data.price;
+              // Procurar por padrão $XX ou $XX-YY
+              const priceMatch = priceText.match(/\$([\d.-]+)/); 
+              return priceMatch ? priceMatch[1] : "";
+            })()
+          : "",
+      },
+      { property: "og:price:currency", content: "USD" },
+      { name: "product:availability", content: "in stock" },
+    ],
+  }}
+/>
+
+<SEOSchema 
+  type="product"
+  title={post.data.title}
+  description={post.data.description}
+  url={Astro.url.href}
+  image={post.data.image}
+  price={post.data.price}
+  category={post.data.category}
+/>
+
+<ProductsPostLayout frontmatter={post.data}>
+  <Header slot="before-content" />
+  <Content />
+  <div class="mt-10 mb-6">
+    <a
+      href={post.data.affiliateLink}
+      class="block w-full text-[14px] md:w-full lg:w-full mx-auto text-center bg-[#234338] hover:bg-[#1a3229] !text-white font-medium py-3 px-6 rounded-[10px] tracking-[-0.25] transition-colors text-lg"
+    >
+      Visit Official Website
+    </a>
+  </div>
+ 
+  <RelatedPosts
+    posts={relatedPosts}
+    title="Related Supplements"
+    slot="after-content"
+  />
+</ProductsPostLayout>
