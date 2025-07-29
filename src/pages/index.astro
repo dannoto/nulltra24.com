@@ -103,8 +103,8 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
 >
   <Header />
 
-  <main class="bg-white lg:pt-[74px] md:pt-[25px] pt-0 pb-[165px]">
-    <div class="mx-auto !w-full !max-w-[1212px] lg:px-4 md:p-4 p-0">
+  <main class="bg-white lg:pt-[74px] md:pt-[25px] pt-0 px-2  md:pb-[165px] pb-[60px]">
+    <div class="mx-auto !w-full !max-w-[1212px] lg:px-4 md:p-4 p-4">
       <!-- Banner com versão mobile e desktop diferentes -->
       <div class="mb-10 relative overflow-hidden rounded-lg">
         <!-- Versão Desktop (escondida em mobile) -->
@@ -180,29 +180,71 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
         </div>
 
         <!-- Versão Mobile (escondida em desktop) -->
-        <div
-          class="relative md:hidden bg-[#E9F0D1]  overflow-hidden h-[250px] sm:h-[180px]"
-        >
+        <div class="relative md:hidden bg-[#E9F0D1] rounded-lg mt-3  overflow-hidden">
           <!-- Layout flexível para colocar texto e imagem lado a lado -->
-          <div
-            class="flex flex-row items-center justify-between relative z-10 h-full"
-          >
-            <!-- Coluna de imagem à esquerda (como no desktop) -->
-            <div class="w-3/4 relative z-10 flex justify-end items-end h-full  xs:flex"    >
-              <!-- <Image
+          <div class="flex justify-end items-end  relative z-10 p-0"   >
+            <!-- Coluna de imagem à direita (colada na borda) -->
+            <div class="w-2/5 relative z-10 flex justify-end items-end h-full">
+              <Image
                 src="/assets/abstract/woman2.webp"
                 alt="Woman pointing to content"
                 width={180}
-                height={260}
+                height={360}
                 widths={[180, 220]}
                 sizes="180px"
-                class="h-auto max-h-[180px] sm:max-h-[260px] object-contain"
+                class="h-auto max-h-[380px] sm:max-h-[360px] object-contain"
                 loading="eager"
                 decoding="async"
                 fetchpriority="high"
                 format="webp"
                 quality={70}
-              /> -->
+              />
+            </div>
+            <!-- Coluna de texto à esquerda -->
+            <div class="w-3/5 relative z-40 p-3 sm:p-4">
+              <h2
+                class="text-xl !font-bold text-[#354C44] mb-1 sm:mb-2 !leading-tight"
+              >
+                The Power of Nutraceuticals
+              </h2>
+              <p class="text-sm sm:text-base text-[#354C44] mb-2 sm:mb-3">
+                Transform Your Health, Nourish the Best in You
+              </p>
+              <!-- Certificações abaixo do texto -->
+              <div class="relative z-40 py-1 sm:py-2 flex">
+                <img
+                  src="/assets/abstract/aw.webp"
+                  srcset="/assets/abstract/aw.webp 150w, /assets/abstract/aw.webp 188w"
+                  alt="Certification tags"
+                  sizes="150px"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="auto"
+                  width="180"
+                  height="25"
+                  class="h-6 sm:h-8 object-container"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Background pattern com base.webp (mobile) -->
+          <div class="absolute top-0 left-0 w-full h-full z-0 overflow-hidden">
+            <img
+              src="/assets/abstract/base.webp"
+              alt="Background pattern"
+              class="w-full h-full object-cover"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <!-- <div  class="relative md:hidden bg-[#E9F0D1] p-4  overflow-hidden h-[250px] sm:h-[180px]"   >
+          <div
+            class="flex flex-row items-center  justify-between relative z-10 h-full"
+          >
+            <div class="w-3/4 relative z-10  flex justify-end items-end h-full  xs:flex"    >
+             
                        <Image
                 src="/assets/abstract/woman2.webp"
                 alt="Woman pointing to content"
@@ -219,7 +261,6 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
               />
             </div>
 
-            <!-- Coluna de texto à direita (como no desktop) -->
             <div  class="w-full  xs:w-1/4 relative z-40 p-4 sm:p-2 sm:pt-1 flex flex-col justify-center h-full" >
               <h2
 
@@ -235,7 +276,6 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
                 Transform Your Health, Nourish the Best in You
               </p>
 
-              <!-- Certificações abaixo do texto -->
               <div class="relative z-40">
                 <Image
                   src="/assets/abstract/aw.webp"
@@ -254,7 +294,6 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
             </div>
           </div>
 
-          <!-- Background pattern com base.webp (mobile) -->
           <div class="absolute top-0 left-0 w-full h-full z-0 overflow-hidden">
             <img
               src="/assets/abstract/base.webp"
@@ -265,10 +304,12 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
               decoding="async"
             />
           </div>
-        </div>
+        </div> -->
       </div>
 
-      <h1 class="lg:!text-[24px] sm:!text-[12px] !font-bold !mb-[25px] lg:!mt-[150px] md:!mt-[50px] sm:!mt-[5px] lg:px-4 md:p-4 p-4 pt-0">
+      <h1
+        class="lg:!text-[24px] sm:!text-[12px] !font-bold !mb-[25px] lg:!mt-[150px] md:!mt-[50px] sm:!mt-[5px] lg:px-4 md:p-4 py-4 pt-0"
+      >
         Top Products
       </h1>
 
@@ -278,14 +319,14 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
 
       <!-- Grid de produtos com shadow e espaçamento consistente -->
       <div
-        id="productsGrid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[50px] justify-center lg:justify-items-start"
+        id="productsGrid"        
+        class=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3 md:gap-[50px] gap-[30px] justify-center lg:justify-items-start "
+        style="padding:0px !important;margin:0px;width!100%"
       >
         {
           sortedPosts.map((post: any) => (
             <div
-              class="w-full flex justify-center lg:justify-start"
-             
+              class="w-full flex justify-center  lg:justify-start"
               data-title={post.data.title}
               data-category={post.data.category}
             >
