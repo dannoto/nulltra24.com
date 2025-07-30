@@ -5,7 +5,7 @@ export async function GET({ url }) {
   const urls = [
     {
       loc: `${siteUrl}/`,
-      priority: "1.1",
+      priority: "1.0",
       changefreq: "daily",
       lastmod: currentDate,
     },
@@ -154,7 +154,8 @@ ${urls
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml",
-      "Content-Disposition" :  "attachment; filename=sitemap.xml"
+      // "Content-Disposition" :  "attachment; filename=sitemap.xml"
+      "Content-Disposition": "inline",
     },
   });
 
