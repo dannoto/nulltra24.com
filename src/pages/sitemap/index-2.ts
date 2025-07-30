@@ -151,16 +151,17 @@ ${urls
   .join("")}
 </urlset>`;
 
-  // return new Response(xml, {
-  //   headers: {
-  //     "Content-Type": "application/xml",
-  //   },
-  // });
-
   return new Response(xml, {
     headers: {
-      "Content-Type": "text/xml",
-      "Content-Disposition": "inline",
+      "Content-Type": "application/xml",
+      "Content-Disposition" :  "attachment; filename=sitemap.xml"
     },
   });
+
+  // return new Response(xml, {
+  //   headers: {
+  //     "Content-Type": "text/xml",
+  //     "Content-Disposition": "inline",
+  //   },
+  // });
 }
