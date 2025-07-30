@@ -153,7 +153,7 @@ ${urls
 
   return new Response(xml, {
     headers: {
-      "Content-Type": "application/xml",
+      "Content-Type": "text/xml",
       // "Content-Disposition" :  "attachment; filename=sitemap.xml"
       "Content-Disposition": "inline",
     },
