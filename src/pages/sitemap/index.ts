@@ -5,7 +5,7 @@ export async function GET({ url }) {
   const urls = [
     {
       loc: `${siteUrl}/`,
-      priority: "1.0",
+      priority: "1.1",
       changefreq: "daily",
       lastmod: currentDate,
     },
