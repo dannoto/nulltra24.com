@@ -151,9 +151,16 @@ ${urls
   .join("")}
 </urlset>`;
 
+  // return new Response(xml, {
+  //   headers: {
+  //     "Content-Type": "application/xml",
+  //   },
+  // });
+
   return new Response(xml, {
-    headers: {
-      "Content-Type": "application/xml",
-    },
-  });
+  headers: {
+    "Content-Type": "application/xml",
+    "Content-Disposition": "inline", // ✅ Adicione esta linha
+  },
+});
 }

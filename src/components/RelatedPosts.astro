@@ -69,22 +69,22 @@ const { posts, title = "Related Suplements" } = Astro.props;
 
 {
   posts.length > 0 && (
-    <section style="padding-left:17px" class="full-width-section bg-[#FAFDF2] py-12 lg:py-[88px]">
-      <div class="max-w-[1212px] mx-auto px-4">
+    <section class="  py-12 lg:py-[88px]">
+      <div class="">
         <div class="flex justify-between items-center mb-6">
-          <h2 class="text-xl sm:text-2xl font-bold px-0 !mt-0 !mb-0">{title}</h2>
+          <h2 class="text-xl sm:text-2xl font-bold !mt-0 !mb-0">{title}</h2>
         </div>
 
         {/* Desktop view - Grid */}
         <div 
-        class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-[30px] lg:gap-[50px] justify-items-start min-h-[360px]"
+        class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-[50px]  justify-items-start"
         //   class=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3 md:gap-[50px] gap-[30px] justify-center lg:justify-items-start "
         // style="padding:0px !important;margin:0px;width!100%"
         
         >
           {posts.map((post) => (
             <div
-              class="w-full max-w-[360px] mx-auto"
+              class="w-full"
               data-title={post.data.title}
               data-category={post.data.category}
             >
@@ -104,7 +104,7 @@ const { posts, title = "Related Suplements" } = Astro.props;
 
         {/* Mobile view - Horizontal Scroll */}
         <div class="block md:hidden">
-          <div  class="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+          <div  class="flex gap-4 overflow-x-auto pb-4  scrollbar-hide">
             {posts.map((post) => (
               <div class="flex-shrink-0 w-[360px]">
                 <div

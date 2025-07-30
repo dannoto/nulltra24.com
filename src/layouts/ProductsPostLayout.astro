@@ -25,9 +25,10 @@ const {
   <!-- Barra superior removida -->
   <!-- Slot para conteúdo adicional (como posts relacionados) -->
   <slot name="before-content" />
-  <main class="  pt-5 md:pt-8 "> 
+  <main class="  pt-5 md:pt-8  lg:px-20 md:px-8 px-4 "> 
+
     <!-- lg:mx-auto md:px-4 px-5 -->
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 lg:mx-16 md:px-6 px-6">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 ">
       <!-- Coluna à esquerda sticky -->
 
       <div class="w-full lg:w-1/3 lg:max-w-[380px]">
@@ -53,7 +54,7 @@ const {
             Back
           </a>
           <!-- Título e descrição -->
-          <div class="flex flex-col w-full items-start gap-0">
+          <div class="flex flex-col w-full items-start  gap-0">
             <img
               src={background}
               alt={title}
@@ -181,7 +182,7 @@ const {
       </div>
 
       <!-- Coluna à direita com conteúdo do artigo -->
-      <div class="md:border-l md:pl-6 border-gray-200 lg:w-2/3">
+      <div class="md:border-l md:pl-6 border-gray-200  lg:w-2/3">
         <!-- Product Banner (outside prose container) -->
 
         <!-- Article Content with prose styling -->

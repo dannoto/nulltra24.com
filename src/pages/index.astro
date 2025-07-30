@@ -97,14 +97,15 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
 />
 
 <SEOSchema type="organization" />
+
 <Layout
   title="Nutra24 - Produtos para Saúde e Bem-estar"
   description="Suplementos e produtos para nutrição e saúde"
 >
   <Header />
 
-  <main class="bg-white lg:pt-[74px] md:pt-[25px] pt-0 px-2  md:pb-[165px] pb-[60px]">
-    <div class="mx-auto !w-full !max-w-[1212px] lg:px-4 md:p-4 p-4">
+  <main class="bg-white lg:pt-[74px] md:pt-[25px] pt-0  lg:px-20 md:px-8 px-4 md:pb-[165px] pb-[60px]">
+    <div class="">
       <!-- Banner com versão mobile e desktop diferentes -->
       <div class="mb-10 relative overflow-hidden rounded-lg">
         <!-- Versão Desktop (escondida em mobile) -->
@@ -180,9 +181,11 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
         </div>
 
         <!-- Versão Mobile (escondida em desktop) -->
-        <div class="relative md:hidden bg-[#E9F0D1] rounded-lg mt-3  overflow-hidden">
+        <div
+          class="relative md:hidden bg-[#E9F0D1] rounded-lg mt-3 overflow-hidden"
+        >
           <!-- Layout flexível para colocar texto e imagem lado a lado -->
-          <div class="flex justify-end items-end  relative z-10 p-0"   >
+          <div class="flex justify-end items-end relative z-10 p-0">
             <!-- Coluna de imagem à direita (colada na borda) -->
             <div class="w-2/5 relative z-10 flex justify-end items-end h-full">
               <Image
@@ -318,11 +321,15 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
       </div>
 
       <!-- Grid de produtos com shadow e espaçamento consistente -->
-      <div
+      <!-- <div
         id="productsGrid"        
-        class=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3 md:gap-[50px] gap-[30px] justify-center lg:justify-items-start "
-        style="padding:0px !important;margin:0px;width!100%"
+       class=" grid grid-cols-1 md:grid-cols-2 bg-orange-500  lg:grid-cols-3 md:gap-[50px] gap-[30px] justify-center lg:justify-items-start "
+      > -->
+      <div
+        id="productsGrid"
+        class="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-[50px] justify-center lg:justify-items-start"
       >
+
         {
           sortedPosts.map((post: any) => (
             <div
@@ -392,7 +399,7 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
       </div>
     </div>
   </main>
-
+  
   <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
       // Configurações de paginação
