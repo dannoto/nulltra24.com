@@ -158,9 +158,9 @@ ${urls
   // });
 
   return new Response(xml, {
-  headers: {
-    "Content-Type": "application/xml",
-    "Content-Disposition": "inline", // ✅ Adicione esta linha
-  },
-});
+    headers: {
+      "Content-Type": "text/xml",
+      "Content-Disposition": "inline",
+    },
+  });
 }
