@@ -21,6 +21,7 @@ export async function getStaticPaths() {
 
 // Recebe o post como prop
 const { post } = Astro.props;
+
 const { Content } = await post.render();
 
 // Busca posts relacionados (mesma categoria)
@@ -163,6 +164,8 @@ if (categoryPosts.length >= 3) {
 
 <ProductsPostLayout frontmatter={post.data}>
   <Header slot="before-content" />
+
+
   <Content />
   <div class="mt-10 mb-6">
     <a
@@ -172,8 +175,10 @@ if (categoryPosts.length >= 3) {
       Visit Official Website
     </a>
   </div>
+  
  
   <RelatedPosts
+  
     posts={relatedPosts}
     title="Related Supplements"
     slot="after-content"

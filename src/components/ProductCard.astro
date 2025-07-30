@@ -39,7 +39,7 @@ const colorMap = {
   amber: "bg-amber-100 text-amber-800",
   teal: "bg-teal-100 text-teal-800",
   lightRed: "bg-gray-100 text-[#991B1B]",
-    brown: "bg-[#FDEACC] text-[#92400E]", // marrom claro de fundo e texto marrom escuro
+  brown: "bg-[#FDEACC] text-[#92400E]", // marrom claro de fundo e texto marrom escuro
 };
 
 // Determina as classes de cor com base na prop categoryColor
@@ -55,17 +55,17 @@ function renderStars(rating: number) {
     if (i <= rating) {
       // Estrela cheia
       stars.push(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#FFCB45" stroke="#FFCB45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#FFCB45" stroke="#FFCB45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
       );
     } else if (i - 0.5 <= rating) {
       // Meia estrela (usando uma estrela cheia com metade coberta)
       stars.push(
-        '<div class="relative !w-[12px] !h-[12px]"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#FFCB45" stroke="#FFCB45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="absolute top-0 right-0 w-1/2 h-full bg-white"></div></div>'
+        '<div class="relative !w-[12px] !h-[12px]"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#FFCB45" stroke="#FFCB45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="absolute top-0 right-0 w-1/2 h-full bg-white"></div></div>',
       );
     } else {
       // Estrela vazia
       stars.push(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFCB45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFCB45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
       );
     }
   }
@@ -82,20 +82,20 @@ function formatReviewCount(count: number) {
 <a
   href={slug ? `${slug}` : "#"}
   class="block w-full h-full max-w-[360px] max-h-[360px]
-  rounded-[10px] 
+  rounded-[10px]
+  border border-1 border-[#E8E8E8]
   border-[#e8e8e8] p-[20px] overflow-hidden
   shadow-[0_8px_8px_-8px_rgba(0,0,0,0.1),_0_2px_2px_0_rgba(0,0,0,0.1),_0_0_1px_0_rgba(0,0,0,0.2)]
   bg-white"
+  
 >
   <div
     class="flex flex-col items-center justify-between gap-3 sm:gap-4 md:gap-[15px] h-full"
-
-    style="height:360px !important"
+  
   >
     <!-- Product Image with responsive optimization -->
 
-    
-    <div class="w-full flex justify-center flex-shrink-0">
+    <div class="w-full flex justify-center flex-shrink-0" >
       <Image
         src={image || "/images/products/placeholder.jpg"}
         alt={title}
@@ -118,21 +118,35 @@ function formatReviewCount(count: number) {
         <div class="flex flex-col items-start gap-[8px] w-full">
           <div class="flex justify-between items-start w-full">
             <h3
-              class="font-semibold !mt-0 !mb-0 text-black !text-base sm:text-base tracking-[-0.25px] leading-5 flex-1 pr-2"
+              class="font-semibold !mt-0 !mb-0 text-black tracking-[-0.25px] leading-5 flex-1 pr-2"
+              style="font-size:16px"
             >
               {title}
             </h3>
 
             <span
-              class={`h-4 sm:h-5 md:mt-[0.4px] px-1 sm:px-[5px] py-0.5 ${categoryColorClasses} rounded-sm text-xs tracking-[-0.25px] leading-3 sm:leading-[15px] font-medium flex-shrink-0`}
+              class={`h-4 sm:h-5 md:mt-[0.4px] px-1 sm:px-[5px] py-0.5 ${categoryColorClasses} rounded-sm  tracking-[-0.25px] leading-3 sm:leading-[15px] font-medium flex-shrink-0`}
+              style="font-size:14px"
             >
               {category}
             </span>
           </div>
         </div>
 
+        <style>
+          .prod_description {
+            font-size: 14px;
+          }
+
+          @media (max-width: 1000px) {
+            .prod_description {
+              font-size: 14px;
+            }
+          }
+        </style>
+
         <p
-          class="font-normal text-[#1d1d1f] !text-[14px] tracking-[-0.25px] leading-4  !mb-0"
+          class="font-normal text-[#1d1d1f] prod_description tracking-[-0.25px] leading-4 !mb-0"
         >
           {description}
         </p>
@@ -148,7 +162,8 @@ function formatReviewCount(count: number) {
               />
             </div>
             <span
-              class="font-normal text-[#6e6e73] text-[10px] sm:text-xs tracking-[-0.12px] leading-3 sm:leading-[15px] whitespace-nowrap"
+              class="font-normal text-[#6e6e73] tracking-[-0.12px] leading-3 sm:leading-[15px] whitespace-nowrap"
+              style="font-size:14px !important"
             >
               {formatReviewCount(reviews.count)} Reviews
             </span>
@@ -158,7 +173,6 @@ function formatReviewCount(count: number) {
     </div>
   </div>
 </a>
-
 
 <!-- <style>
   /* Ensure text doesn't overflow and maintains clean layout */
