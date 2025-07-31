@@ -103,7 +103,7 @@ function formatReviewCount(count: number) {
         height={180}
         loading="lazy"
         decoding="async"
-       class="w-full h-auto max-h-[206px] object-contain"
+       class="w-full h-auto max-h-[206px]  max-w-[360px] object-contain"
         format="webp"
         quality={30}
         sizes="(max-width: 480px) 324px, (max-width: 768px) 280px, 324px"
@@ -145,11 +145,16 @@ function formatReviewCount(count: number) {
           }
         </style>
 
-        <p
+        <!-- <p
           class="font-normal text-[#1d1d1f] prod_description tracking-[-0.25px] leading-4 !mb-0"
         >
           {description}
-        </p>
+        </p> -->
+<p
+  class="font-normal text-[#1d1d1f] prod_description tracking-[-0.25px] leading-[22px] !mb-0"
+>
+  {description}
+</p>
 
         <div
           class="flex items-center gap-[5px] sm:gap-[7px] flex-shrink-0 mt-[7px]"
