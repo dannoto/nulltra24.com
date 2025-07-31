@@ -111,6 +111,7 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
         <!-- Versão Desktop (escondida em mobile) -->
         <div
           class="relative hidden md:flex bg-[#E9F0D1] rounded-lg overflow-hidden h-[362px] items-center"
+           style="margin: auto !important;max-width: 1200px;"
         >
           <div class="flex flex-row items-center w-full h-full">
             <!-- Lado esquerdo com a imagem da mulher -->
@@ -185,7 +186,7 @@ const sortedPosts = allPosts.sort((a, b) => a.data.id - b.data.id);
           class="relative md:hidden bg-[#E9F0D1] rounded-lg mt-3 overflow-hidden"
         >
           <!-- Layout flexível para colocar texto e imagem lado a lado -->
-          <div class="flex justify-end items-end relative z-10 p-0">
+          <div class="flex justify-end items-end relative z-10 p-0" >
             <!-- Coluna de imagem à direita (colada na borda) -->
             <div class="w-2/5 relative z-10 flex justify-end items-end h-full">
               <Image
