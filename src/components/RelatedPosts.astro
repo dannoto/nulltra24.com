@@ -71,15 +71,17 @@ const { posts, title = "Related Suplements" } = Astro.props;
   }
 </style>
 
-<div class="flex justify-between items-center mb-6">
-  <h2 class="text-xl sm:text-2xl font-bold !mt-0 !mb-0">{title}</h2>
-</div>
+<div  style="margin: auto !important;max-width: 1200px;" class="py-8">
+
+    <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl sm:text-2xl font-bold !mt-0 !mb-0">{title}</h2>
+  </div>
 
 {
   posts.length > 0 && (
     <div
-      class="justify-center justify-items-center py-8 "
-      style="margin: auto !important;max-width: 1200px;"
+      class="justify-center justify-items-center py-4 "
+     
     >
       <div
         id="productsGrid"
@@ -105,5 +107,6 @@ const { posts, title = "Related Suplements" } = Astro.props;
         ))}
       </div>
     </div>
-  )
-}
+  )}
+</div>
+

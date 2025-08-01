@@ -2,6 +2,88 @@
 import { Image } from "astro:assets";
 import Layout from "./Layout.astro";
 
+// ========
+
+import { SEO } from "astro-seo";
+import { getCollection } from "astro:content";
+// import Header from "../../components/HeaderInner.astro";
+// import RelatedPosts from "../../components/RelatedPosts.astro";
+// import SEOSchema from "../../components/SEOSchema.astro";
+// import ProductsPostLayout from "../../layouts/ProductsPostLayout.astro";
+import Header from "../components/HeaderInner.astro";
+import RelatedPosts from "../components/RelatedPosts.astro";
+import SEOSchema from "../components/SEOSchema.astro";
+// import ProductsPostLayout from "../layouts/ProductsPostLayout.astro";
+
+// Gera rotas para todos os posts
+// export async function getStaticPaths() {
+//   const posts = await getCollection("products");
+//   return posts.map((post) => ({
+//     params: { slug: post.slug },
+//     props: { post },
+//   }));
+// }
+
+// Recebe o post como prop
+// const { post } = Astro.props;
+
+// const { Content } = await post.render();
+
+// Busca posts relacionados (mesma categoria)
+const allPosts = await getCollection("products");
+const shuffledPosts = allPosts.sort(() => Math.random() - 0.5).slice(0, 3);
+
+// type PostType = typeof allPosts[0];
+
+// // Primeiro tenta encontrar posts da mesma categoria
+// const categoryPosts = allPosts.filter(
+//   (p) => p.slug !== post.slug && p.data.category === post.data.category
+// );
+
+// // Se não houver posts suficientes da mesma categoria, complementa com posts de tags relacionadas
+// let relatedPosts: PostType[] = [];
+
+// if (categoryPosts.length >= 3) {
+//   // Se tivermos 3 ou mais posts da mesma categoria, usamos apenas esses
+//   relatedPosts = categoryPosts
+//     .sort(() => Math.random() - 0.5) // Ordem aleatória
+//     .slice(0, 3);
+// } else {
+//   // Adiciona todos os posts da mesma categoria
+//   relatedPosts = [...categoryPosts];
+  
+//   // Complementa com posts que compartilham tags
+//   if (post.data.tags && post.data.tags.length > 0) {
+//     const tagPosts = allPosts.filter(
+//       (p) =>
+//         p.slug !== post.slug &&
+//         !relatedPosts.some(rp => rp.slug === p.slug) && // Evita duplicatas
+//         p.data.tags &&
+//         p.data.tags.some((tag) => post.data.tags?.includes(tag))
+//     );
+    
+//     // Adiciona posts com tags relacionadas até completar 3 posts
+//     relatedPosts = [...relatedPosts, ...tagPosts.slice(0, 3 - relatedPosts.length)];
+//   }
+  
+//   // Se ainda não tivermos 3 posts, adiciona posts aleatórios
+//   if (relatedPosts.length < 3) {
+//     const remainingPosts = allPosts.filter(
+//       (p) => 
+//         p.slug !== post.slug && 
+//         !relatedPosts.some(rp => rp.slug === p.slug)
+//     );
+    
+//     relatedPosts = [
+//       ...relatedPosts,
+//       ...remainingPosts
+//         .sort(() => Math.random() - 0.5)
+//         .slice(0, 3 - relatedPosts.length)
+//     ];
+//   }
+// }
+// ==============
+
 const { frontmatter } = Astro.props;
 const {
   title,
@@ -211,8 +293,17 @@ const {
     </div>
     <slot name="after-content" />
 
-    
+
   </main>
+  <div style="background-color:#FAFDF2">
+     
+  <RelatedPosts
+  
+    posts={shuffledPosts}
+    title="Related Supplements"
+    slot="after-content"
+  />
+  </div>
 
   <style>
     /* Estilos para melhorar a aparência do conteúdo MDX */
