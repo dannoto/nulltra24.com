@@ -1,7 +1,19 @@
 ---
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
+
+
+import { SEO } from "astro-seo";
+import { getCollection } from "astro:content";
+// import Header from "../../components/HeaderInner.astro";
+// import RelatedPosts from "../../components/RelatedPosts.astro";
+// import SEOSchema from "../../components/SEOSchema.astro";
+// import ProductsPostLayout from "../../layouts/ProductsPostLayout.astro";
+import Header from "../components/HeaderInner.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
+import SEOSchema from "../components/SEOSchema.astro";
+import ProductsPostLayout from "../layouts/ProductsPostLayout.astro";
+
 
 // ========
 
@@ -16,7 +28,6 @@ export async function getStaticPaths() {
   }));
 }
 
-// Recebe o post como prop
 const { post } = Astro.props;
 
 const { Content } = await post.render();
