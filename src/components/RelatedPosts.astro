@@ -84,9 +84,12 @@ const { posts, title = "Related Suplements" } = Astro.props;
       class="justify-center justify-items-center py-4   xl:px-0 lg:px-0 md:px-8 px-4"
      
     >
+
+         {/* Desktop view - Horizontal Scroll */}
+
       <div
         id="productsGrid"
-        class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[25px] md:gap-[50px]  justify-center lg:justify-items-start"
+        class="md:grid hidden grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[25px] md:gap-[50px]  justify-center lg:justify-items-start"
       >
         {posts.map((post: any) => (
           <div
@@ -107,6 +110,34 @@ const { posts, title = "Related Suplements" } = Astro.props;
           </div>
         ))}
       </div>
+
+   {/* Mobile view - Horizontal Scroll */}
+        <div class="block md:hidden">
+          <div class="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+            {posts.map((post) => (
+              <div class="flex-shrink-0 w-[360px]">
+                <div
+                  class="w-full"
+                  data-title={post.data.title}
+                  data-category={post.data.category}
+                >
+                  <ProductCard
+                    title={post.data.mainTitle}
+                    description={post.data.description}
+                    image={post.data.image}
+                    background={post.data.image}
+                    category={post.data.category}
+                    categoryColor={post.data.categoryColor || "green"}
+                    slug={post.slug}
+                    reviews={post.data.reviews || 0}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
     </div>
   )}
 </div>

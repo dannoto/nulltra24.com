@@ -1,0 +1,40 @@
+# robots.txt for https://nutra24.com
+# Last updated: 2025-08-02
+
+# ---------------------------------
+# 1) Global rules for all crawlers
+# ---------------------------------
+User-agent: *
+Allow: /
+
+# Block typical non-indexable or duplicate-content areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /login/
+Disallow: /account/
+Disallow: /orders/
+Disallow: /search/
+Disallow: /api/
+Disallow: /cgi-bin/
+
+# If the site runs on WordPress (optional — safe to leave in)
+Disallow: /wp-admin/
+Allow:    /wp-admin/admin-ajax.php
+
+# ---------------------------------
+# 2) Crawlers with heavy load
+#    (lower crawl rate to protect server)
+# ---------------------------------
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# ---------------------------------
+# 3) Sitemap location
+#    (helps search engines discover every product quickly)
+# ---------------------------------
+Sitemap: https://nutra24.com/sitemap.xml
