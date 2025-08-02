@@ -77,15 +77,16 @@ const { posts, title = "Related Suplements" } = Astro.props;
     <h2 class="text-xl sm:text-2xl font-bold !mt-0 !mb-0">{title}</h2>
   </div>
 
+
 {
   posts.length > 0 && (
     <div
-      class="justify-center justify-items-center py-4 "
+      class="justify-center justify-items-center py-4   xl:px-0 lg:px-0 md:px-8 px-4"
      
     >
       <div
         id="productsGrid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[25px] md:gap-[50px]  justify-center lg:justify-items-start"
+        class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[25px] md:gap-[50px]  justify-center lg:justify-items-start"
       >
         {posts.map((post: any) => (
           <div
